@@ -1,2 +1,8 @@
-code .
+h1 {
+    color: black;
+}
 
+.clicked {
+    color: blue;
+    transition: color 0.5s ease-in-out;
+}
