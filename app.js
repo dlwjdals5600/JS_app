@@ -1,36 +1,31 @@
 
-// ``` 
-// querySelector id 일때는 #을 class 일때는 .을 붙여준다.
-// 선택한 것의 하위의 css를 가져올 수 있다.
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
-// const title = document.querySelector(".test h1");
-
-// --------------
-
-// getElementById id를 써주면 querySelector와 같은 역할을 하지만
-// 하위의 것을 가져올 수 없다.
-
-// const title2 = document.getElementById("test");
+const _hidden_className = "hidden";
+const _username_key = "username";
 
 
-// console.log(title);
-// console.log(title2);
-// ```
-
-
-
-const title = document.querySelector("div.test h1");
-
-function handleTitleClick() {
-    
-    title.classList.toggle("clicked"); // 밑에 코드와 동일, 
-                                       // 클레스리스트에 clicked가 있으면 삭제, 없으면 추가
-
-    // const clickedClass = "clicked";
-    // if(title.classList.contains(clickedClass)){
-    //     title.classList.remove(clickedClass);
-    // } else {
-    //     title.classList.add(clickedClass);
-    // }
+function paintGreetings(username){
+    greeting.innerText = `안녕하세요 ${username} 님`;
+    greeting.classList.remove(_hidden_className);
 }
-title.addEventListener("click", handleTitleClick);
+
+function LoginSubmit(event) {
+    event.preventDefault();
+    loginForm.classList.add(_hidden_className);
+    const username = loginInput.value;
+    localStorage.setItem(_username_key, username);
+    paintGreetings(username);
+}
+
+const savedUsername = localStorage.getItem(_username_key);
+
+if(savedUsername === null){
+    loginForm.classList.remove(_hidden_className);
+    loginForm.addEventListener("submit", LoginSubmit);
+} else{
+    //loginForm.classList.add(_hidden_className);
+    paintGreetings(savedUsername);
+}

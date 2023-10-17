@@ -8,9 +8,17 @@
     <title>Background_App</title>
 </head>
 <body>
-    <div class="test">
-        <h1>Grab Me!</h1>
-    </div>
+
+    <form id="login-form" class="hidden">
+        <input
+            required
+            maxlength = "15"
+            type="text"
+            placeholder="당신의 이름을 적어주세요.">
+        <button>Log In</button>
+    </form>
+    <h1 id="greeting" class="hidden"></h1>
+
     <script src="app.js"></script>
 </body>
 </html>
